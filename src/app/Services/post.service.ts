@@ -1,29 +1,29 @@
-import { HttpClient } from '@angular/common/http';
-import { NONE_TYPE } from '@angular/compiler';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { PostDTO } from '../Models/post.dto';
-import { SharedService } from './shared.service';
+import { HttpClient } from "@angular/common/http";
+import { NONE_TYPE } from "@angular/compiler";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { PostDTO } from "../Models/post.dto";
+import { SharedService } from "./shared.service";
 
-interface updateResponse {
-  affected: number;
+export interface updateResponse {
+  affected: number; // Por pruebas
 }
 
-interface deleteResponse {
-  affected: number;
+export interface deleteResponse {
+  affected: number; // Por pruebas
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class PostService {
   private urlBlogUocApi: string;
   private controller: string;
 
   constructor(private http: HttpClient, private sharedService: SharedService) {
-    this.controller = 'posts';
-    this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
+    this.controller = "posts";
+    this.urlBlogUocApi = "http://localhost:3000/" + this.controller;
   }
 
   getPosts(): Observable<PostDTO[]> {
@@ -34,7 +34,7 @@ export class PostService {
 
   getPostsByUserId(userId: string): Observable<PostDTO[]> {
     return this.http
-      .get<PostDTO[]>('http://localhost:3000/users/posts/' + userId)
+      .get<PostDTO[]>("http://localhost:3000/users/posts/" + userId)
       .pipe(catchError(this.sharedService.handleError));
   }
 
@@ -46,31 +46,31 @@ export class PostService {
 
   getPostById(postId: string): Observable<PostDTO> {
     return this.http
-      .get<PostDTO>(this.urlBlogUocApi + '/' + postId)
+      .get<PostDTO>(this.urlBlogUocApi + "/" + postId)
       .pipe(catchError(this.sharedService.handleError));
   }
 
   updatePost(postId: string, post: PostDTO): Observable<PostDTO> {
     return this.http
-      .put<PostDTO>(this.urlBlogUocApi + '/' + postId, post)
+      .put<PostDTO>(this.urlBlogUocApi + "/" + postId, post)
       .pipe(catchError(this.sharedService.handleError));
   }
 
   likePost(postId: string): Observable<updateResponse> {
     return this.http
-      .put<updateResponse>(this.urlBlogUocApi + '/like/' + postId, NONE_TYPE)
+      .put<updateResponse>(this.urlBlogUocApi + "/like/" + postId, NONE_TYPE)
       .pipe(catchError(this.sharedService.handleError));
   }
 
   dislikePost(postId: string): Observable<updateResponse> {
     return this.http
-      .put<updateResponse>(this.urlBlogUocApi + '/dislike/' + postId, NONE_TYPE)
+      .put<updateResponse>(this.urlBlogUocApi + "/dislike/" + postId, NONE_TYPE)
       .pipe(catchError(this.sharedService.handleError));
   }
 
   deletePost(postId: string): Observable<deleteResponse> {
     return this.http
-      .delete<deleteResponse>(this.urlBlogUocApi + '/' + postId)
+      .delete<deleteResponse>(this.urlBlogUocApi + "/" + postId)
       .pipe(catchError(this.sharedService.handleError));
   }
 }

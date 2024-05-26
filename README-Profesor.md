@@ -17,17 +17,32 @@ Antes de empezar a crear los tests se han realizado las operaciones solicitads, 
 
 Se han creado los 5 tests solicitados en el fichero format-date.pipe.spec.ts
 
-=============================== Coverage summary ===============================
-Statements : 100% ( 20/20 )
-Branches : 100% ( 6/6 )
-Functions : 100% ( 2/2 )
-Lines : 100% ( 19/19 )
-================================================================================
-
 ## Ejercicio 2 - test rutas
+
+Se ha modificado header.component.html para que todas las rutas apunten a la función navigationTo.
+
+Se ha modificado header.component.ts, comentando todos los métodos y agregando el nuevo navigationTo
+
+```typescript
+  navigationTo(route: string): void {
+    this.router.navigateByUrl(route);
+  }
+```
+
+Se ha recuperado el fichero: header.component.spec.ts, añadiendo los test solicitados
+Para simplificar use un array en la peticiones de ruta.
 
 ## Ejercicio 3 - test servicios
 
-## Ejercicio 4 - test
+Se han ajustado los ts para que responda bien a los tests.
+Basandome el los DTO he recuperado los fichero spec.ts de ambos servicios (categoría y post) y he generado los test requeridos.
 
-## Ejercicio 5 - test
+## Ejercicio 4 - test componentes
+
+Se han recuperado los archivos .spec.ts correspondientes.
+
+## Ejercicio 5 - test vista
+
+Se han incluido test dentro del header, dado que es la página que se ocupa de mostrarlos.
+
+![Resultados](results.png)

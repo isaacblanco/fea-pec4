@@ -1,16 +1,16 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { PostDTO } from 'src/app/Models/post.dto';
-import { deleteResponse } from 'src/app/Services/category.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { PostService } from 'src/app/Services/post.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import { HttpErrorResponse } from "@angular/common/http";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { PostDTO } from "src/app/Models/post.dto";
+import { deleteResponse } from "src/app/Services/category.service";
+import { LocalStorageService } from "src/app/Services/local-storage.service";
+import { PostService } from "src/app/Services/post.service";
+import { SharedService } from "src/app/Services/shared.service";
 
 @Component({
-  selector: 'app-posts-list',
-  templateUrl: './posts-list.component.html',
-  styleUrls: ['./posts-list.component.scss'],
+  selector: "app-posts-list",
+  templateUrl: "./posts-list.component.html",
+  styleUrls: ["./posts-list.component.scss"],
 })
 export class PostsListComponent {
   posts!: PostDTO[];
@@ -23,9 +23,9 @@ export class PostsListComponent {
     this.loadPosts();
   }
 
-  private loadPosts(): void {
+  public loadPosts(): void {
     let errorResponse: any;
-    const userId = this.localStorageService.get('user_id');
+    const userId = this.localStorageService.get("user_id");
     if (userId) {
       this.postService.getPostsByUserId(userId).subscribe(
         (posts: PostDTO[]) => {
@@ -40,18 +40,18 @@ export class PostsListComponent {
   }
 
   createPost(): void {
-    this.router.navigateByUrl('/user/post/');
+    this.router.navigateByUrl("/user/post/");
   }
 
   updatePost(postId: string): void {
-    this.router.navigateByUrl('/user/post/' + postId);
+    this.router.navigateByUrl("/user/post/" + postId);
   }
 
   deletePost(postId: string): void {
     let errorResponse: any;
 
     // show confirmation popup
-    let result = confirm('Confirm delete post with id: ' + postId + ' .');
+    let result = confirm("Confirm delete post with id: " + postId + " .");
     if (result) {
       this.postService.deletePost(postId).subscribe(
         (rowsAffected: deleteResponse) => {

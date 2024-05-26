@@ -26,7 +26,6 @@ describe("FormatDatePipe", () => {
     if (type === 4) {
       newFormat = yyyy + '-' + mmFormat + '-' + ddFormat;
     }
-
   */
 
   // Formato de fecha de tipo 1
@@ -36,19 +35,19 @@ describe("FormatDatePipe", () => {
     expect(formattedDate).toBe("26052024"); // Hoy
   });
 
-  it("ormato 2 correcto ddFormat + ' / ' + mmFormat + ' / ' + yyyy", () => {
+  it("Formato 2 correcto ddFormat + ' / ' + mmFormat + ' / ' + yyyy", () => {
     const date = new Date(2024, 4, 26);
     const formattedDate = pipe.transform(date, 2);
     expect(formattedDate).toBe("26 / 05 / 2024");
   });
 
-  it("ormato 3 correcto ddFormat + '/' + mmFormat + '/' + yyyy", () => {
+  it("Formato 3 correcto ddFormat + '/' + mmFormat + '/' + yyyy", () => {
     const date = new Date(2024, 4, 26);
     const formattedDate = pipe.transform(date, 3);
     expect(formattedDate).toBe("26/05/2024");
   });
 
-  it("ormato 4 correcto yyyy + '-' + mmFormat + '-' + ddFormat", () => {
+  it("Formato 4 correcto yyyy + '-' + mmFormat + '-' + ddFormat", () => {
     const date = new Date(2024, 4, 26); // May 9, 2023
     const formattedDate = pipe.transform(date, 4);
     expect(formattedDate).toBe("2024-05-26");
